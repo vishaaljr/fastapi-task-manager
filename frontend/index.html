@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager Pro</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div id="particles-bg"></div>
+
+    <div id="toast-container"></div>
+
+    <!-- Auth View -->
+    <div id="auth-view" class="view-container active">
+        <div class="glass-panel" id="login-panel">
+            <div class="panel-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue</p>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="login-btn">
+                    <span>Login</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="panel-footer">
+                <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+            </div>
+        </div>
+
+        <div class="glass-panel hidden" id="register-panel">
+            <div class="panel-header">
+                <h2>Create Account</h2>
+                <p>Join Task Manager Pro</p>
+            </div>
+            <form id="register-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="text" id="name" placeholder="name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="reg-email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="reg-password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="register-btn">
+                    <span>Create Account</span>
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
+            </form>
+            <div class="panel-footer">
+                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- App View -->
+    <div id="app-view" class="view-container hidden">
+        <nav class="glass-nav">
+            <div class="nav-brand">
+                <i class="fa-solid fa-check-double logo-icon"></i>
+                <h1>TaskPro</h1>
+            </div>
+            <div class="nav-actions">
+                <span id="user-display"></span>
+                <button id="logout-btn" class="btn btn-icon btn-danger" title="Logout">
+                    <i class="fa-solid fa-power-off"></i>
+                </button>
+            </div>
+        </nav>
+
+        <main class="app-main">
+            <div class="task-controls glass-panel">
+                <form id="create-task-form" class="create-task-row">
+                    <input type="text" id="new-task-title" placeholder="What needs to be done?" required>
+                    <input type="text" id="new-task-desc" placeholder="Details (optional)">
+                    <button type="submit" class="btn btn-primary btn-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="task-list-container">
+                <div class="list-header">
+                    <h3>Your Tasks</h3>
+                    <div class="stats" id="task-stats">0 total</div>
+                </div>
+                <ul id="task-list" class="task-list">
+                    <!-- Tasks injected by JS -->
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- JS -->
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

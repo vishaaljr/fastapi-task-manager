@@ -26,16 +26,10 @@ def update_task(db: Session, task_id: int, user_id: int, task_data):
     if not task:
         return None
 
-    # update only provided fields
-    if task_data.title is not None:
-        task.title = task_data.title
+    update_data = task_data.dict(exclude_unset=True)
 
-    if task_data.description is not None:
-        task.description = task_data.description
-
-    if task_data.completed is not None:
-        task.completed = task_data.completed
-
+    for key, value in update_data.items():
+        setattr(task, key, value)
     db.commit()
     db.refresh(task)
     return task

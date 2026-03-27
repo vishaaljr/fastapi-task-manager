@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.models.task import Task
-from app.schemas.task import TaskCreate, TaskUpdate
+from app.schemas.task import TaskCreate, TaskUpdate,TaskUpdate
 from app.services.task_service import create_task, get_tasks, update_task, delete_task
 from app.api.deps import get_db
 from app.api.deps import get_current_user
@@ -23,20 +23,19 @@ def read_all(db: Session = Depends(get_db),
     
     return get_tasks(db, current_user.id)
 
-@router.put("/{task_id}")
+@router.patch("/{task_id}")
 def update(
-    task_id: int,
-    task: TaskUpdate,
+    updatedtask:TaskUpdate,
+    task_id :int ,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    updated_task = update_task(db, task_id, current_user.id, task)
+    updated_task = update_task(db, task_id, current_user.id, updatedtask)
 
     if not updated_task:
         raise HTTPException(status_code=404, detail="Task not found")
 
     return updated_task
-from fastapi import HTTPException
 
 @router.delete("/{task_id}")
 def delete(
