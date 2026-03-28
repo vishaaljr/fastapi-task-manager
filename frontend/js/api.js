@@ -1,4 +1,4 @@
-const API_BASE = 'https://fastapi-task-manager-1-v7am.onrender.com';
+const API_BASE = 'https://task-manager-backend-kjo8.onrender.com';
 
 const api = {
     getToken() {
